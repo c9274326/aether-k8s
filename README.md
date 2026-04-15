@@ -60,7 +60,7 @@ node2
 node3
 ```
 
-> 建議使用 SSH 金鑰（例如 `ansible_ssh_private_key_file`）或 Ansible Vault 管理密碼，不要在 inventory 明文保存憑證。
+> 建議使用 SSH 金鑰（例如 `ansible_ssh_private_key_file`）或 Ansible Vault 管理密碼；密碼不應以明文存放在 inventory 檔案中。
 
 ### 5) 準備 RKE2 參數檔
 
