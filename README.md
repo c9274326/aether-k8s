@@ -44,20 +44,19 @@ sudo sed -i.bak '/\sswap\s/s/^/#/' /etc/fstab
 
 `/absolute/path/to/aether-k8s/hosts.ini`
 
-依實際環境填入 master/worker 節點，例如：
+依實際環境填入 master/worker 節點。  
+若節點有兩張網卡（例如 `enp0s3` NAT 對外、`enp0s8` host-only/static），`ansible_host` 請填節點互連使用的 `enp0s8` IP，例如：
 
 ```ini
 [all]
-node1 ansible_host=172.16.220.36 ansible_user=aether
-node2 ansible_host=172.16.108.89 ansible_user=aether
-node3 ansible_host=172.16.232.55 ansible_user=aether
+vm1 ansible_host=192.168.56.101 ansible_user=aether
+vm2 ansible_host=192.168.56.102 ansible_user=aether
 
 [master_nodes]
-node1
+vm1
 
 [worker_nodes]
-node2
-node3
+vm2
 ```
 
 > 建議使用 SSH 金鑰（例如 `ansible_ssh_private_key_file`）或 Ansible Vault 管理密碼；密碼不應以明文存放在 inventory 檔案中。
